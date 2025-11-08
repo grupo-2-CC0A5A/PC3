@@ -36,7 +36,9 @@ jobs:
         mkdir -p reports
 
     - run: |
-        behave --format pretty --format json -o reports/behave-report.json
+        coverage run --source=models -m behave --format pretty --format json -o reports/behave-report.json
+        coverage xml -o reports/coverage.xml
+        coverage html -d reports/coverage_html
       continue-on-error: false
     
     - if: always()
